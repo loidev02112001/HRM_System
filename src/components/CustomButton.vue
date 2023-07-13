@@ -5,16 +5,19 @@
         button__large: large,
         button__disabled: disable,
         button__rounded: rounded
-    }">
+    }"
+    @click="$emit('handleClick')"
+    >
         <span>
             <slot name="left-icon"></slot>
         </span>
         <span>{{ text }}</span>
         <span>
-            <slot nmae="right-icon"></slot>
+            <slot name="right-icon"></slot>
         </span>
     </button>
 </template>
+
 <script setup>
 defineProps({
     primary: Boolean,
@@ -27,6 +30,7 @@ defineProps({
 })
 defineEmits(['handleClick'])
 </script>
+
 <style lang="scss" scoped>
 .button__default {
     padding: 5px 12px;

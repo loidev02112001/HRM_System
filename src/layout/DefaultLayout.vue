@@ -1,18 +1,20 @@
 <template>
-    <div className="default__layout-container">
-        <div className="menu__side">
+    <div class="default__layout-container">
+        <div class="menu__side">
             <SideMenu />
         </div>
-        <div className="page__content">
+        <div class="page__content">
             <Header />
             <router-view></router-view>
         </div>
     </div>
 </template>
+
 <script setup>
 import SideMenu from '@/components/SideMenu.vue';
 import Header from '@/components/Header.vue';
 </script>
+
 <style scoped lang="scss">
 .default__layout-container {
     display: flex;
