@@ -1,5 +1,3 @@
-import '@/assets/scss/globalStyle.scss';
-
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { VueQueryPlugin } from 'vue-query';
@@ -7,6 +5,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 import App from './App.vue';
 import router from '@/router/';
+import '@/assets/scss/globalStyle.scss';
 
 const vueQueryPluginOptions = {
   queryClientConfig: {
