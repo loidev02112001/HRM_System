@@ -3,14 +3,24 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
 
 import API from '@/services/request';
+import { userInforStore } from '@/stores/userInfor';
 
 export const useLoginMutation = () => {
+  const { getUserInfor } = userInforStore();
   const router = useRouter();
   return useMutation({
     mutationFn: body => API.post(`/auth/login`, body),
     onSuccess: data => {
-        console.log(data)
-      // Cookies.set('accessToken', data.data.accessToken, { path: '/' }, { expires: 1 });
+      const {
+        email: accountEmail,
+        user_avatar: accountAvatar,
+        _id: accountId,
+        username: accountName,
+        role: accountRole,
+        status: accountStatus
+      } = data.data.data;
+      getUserInfor({ accountEmail, accountAvatar, accountId, accountName, accountRole, accountStatus });
+      Cookies.set('accessToken', data.data.data.accessToken, { path: '/' }, { expires: 1 });
       router.push('/');
     },
     onError: error => {

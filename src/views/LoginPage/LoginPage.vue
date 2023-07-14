@@ -9,10 +9,10 @@
         <div class="login__right-desc">Rất vui được gặp lại</div>
         <div class="login__right-form">
           <span class="login__right-label">Email</span>
-          <CustomInput size="large" placeholder="Vui lòng nhập email" v-model:value="email"/>
+          <CustomInput size="large" placeholder="Vui lòng nhập email" v-model:value="email" />
           <span class="login__right-label">Mật khẩu</span>
-          <CustomInput size="large" type="password" placeholder="Vui lòng nhập mật khẩu" v-model:value="password"/>
-          <CustomButton class="login__right-btn" large @handleClick="handleLogin"  text="Đăng nhập"/>
+          <CustomInput size="large" type="password" placeholder="Vui lòng nhập mật khẩu" v-model:value="password" />
+          <CustomButton class="login__right-btn" large @handleClick="handleLogin" text="Đăng nhập" />
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ const email = ref('')
 const password = ref('')
 const { mutate: login } = useLoginMutation()
 const handleLogin = () => {
-  login({email:email.value,password:password.value},'hihi')
+  login({ email: email.value, password: password.value })
 }
 </script>
 <style scoped lang="scss">
