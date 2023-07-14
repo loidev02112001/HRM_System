@@ -1,6 +1,7 @@
 import { useMutation } from 'vue-query';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
+import { notification } from 'ant-design-vue';
 
 import API from '@/services/request';
 import { userInforStore } from '@/stores/userInfor';
@@ -24,7 +25,10 @@ export const useLoginMutation = () => {
       router.push('/');
     },
     onError: error => {
-      showNotification(error.data.message, 'error');
+      console.log(error);
+      notification.error({
+        message: error.data.message
+      });
     }
   });
 };

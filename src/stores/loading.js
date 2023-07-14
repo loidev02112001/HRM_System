@@ -6,10 +6,10 @@ export const useLoadingStore = defineStore('loading', {
   },
   actions: {
     fetching() {
-      this.isLoading = true
+      this.isLoading = true;
     },
-    finish(){
-        this.isLoading = false
+    finish() {
+      this.isLoading = false;
     }
   }
 });

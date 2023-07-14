@@ -1,8 +1,11 @@
 <template>
     <div class="custom__input-container input__search">
-        <a-input-password v-if="type === 'password'" :value="value" :placeholder="placeholder" :size="size" @change="$emit('update:value',$event.target.value)"/>
-        <a-input-search v-else-if="type === 'search'" :value="value" :placeholder="placeholder" :size="size" @change="$emit('update:value',$event.target.value)"/>
-        <a-input v-else :value="value" :placeholder="placeholder" :size="size" @change="$emit('update:value',$event.target.value)"/>
+        <a-input-password v-if="type === 'password'" :value="value" :placeholder="placeholder" :size="size"
+            @change="$emit('update:value', $event.target.value)" />
+        <a-input-search v-else-if="type === 'search'" :value="value" :placeholder="placeholder" :size="size"
+            @change="$emit('update:value', $event.target.value)" />
+        <a-input v-else :value="value" :placeholder="placeholder" :size="size"
+            @change="$emit('update:value', $event.target.value)" />
     </div>
 </template>
 

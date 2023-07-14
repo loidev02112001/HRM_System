@@ -3,9 +3,11 @@
       <Spin size="large"></Spin>
     </div>
 </template>
+
 <script setup>
 import { Spin } from 'ant-design-vue';
 </script>
+
 <style scoped>
 .loading__container {
     position: absolute;

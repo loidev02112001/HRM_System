@@ -13,42 +13,42 @@ import {
 export const menuRouter = [
   {
     path: routes.home,
-    pageIcon: AppstoreOutlined ,
+    pageIcon: AppstoreOutlined,
     label: 'Trang chủ'
   },
   {
     path: routes.employee,
-    pageIcon: UserOutlined ,
+    pageIcon: UserOutlined,
     label: 'Nhân viên'
   },
   {
     path: routes.report,
-    pageIcon: BarChartOutlined ,
+    pageIcon: BarChartOutlined,
     label: 'Báo cáo'
   },
   {
     path: routes.department,
-    pageIcon: ClusterOutlined ,
+    pageIcon: ClusterOutlined,
     label: 'Phòng ban'
   },
   {
     path: routes.contract,
-    pageIcon: AuditOutlined ,
+    pageIcon: AuditOutlined,
     label: 'Hợp đồng'
   },
   {
     path: routes.benefit,
-    pageIcon: DollarOutlined ,
+    pageIcon: DollarOutlined,
     label: 'Quyền lợi'
   },
   {
     path: routes.notifcation,
-    pageIcon: BellOutlined ,
+    pageIcon: BellOutlined,
     label: 'Thông báo'
   },
   {
     path: routes.settings,
-    pageIcon: SettingOutlined ,
+    pageIcon: SettingOutlined,
     label: 'Phân quyền'
-  },
+  }
 ];

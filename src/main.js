@@ -2,9 +2,9 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { VueQueryPlugin } from 'vue-query';
 import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
+import 'ant-design-vue/dist/antd.css';
 import App from './App.vue';
 import router from '@/router/routes';
 import './assets/scss/globalStyle.scss';
@@ -19,7 +19,6 @@ const vueQueryPluginOptions = {
   }
 };
 const app = createApp(App);
-
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 app.use(pinia);

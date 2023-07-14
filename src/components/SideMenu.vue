@@ -12,13 +12,14 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import Cookie from 'js-cookie'
 import { ImportOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router';
+
 import mainLogo from '@/assets/images/dthl_logo.png'
 import { menuRouter } from '@/constants/menuItem'
-
 
 const router = useRouter()
 
@@ -28,6 +29,7 @@ const handleLogout = () => {
     router.push('/login')
 }
 </script>
+
 <style lang="scss" scoped>
 .side__menu-container {
     display: flex;
@@ -49,14 +51,21 @@ const handleLogout = () => {
         min-height: 40px;
         display: flex;
         align-items: center;
-        margin: 0px 4px ;
+        margin: 0px 4px;
+
         &:hover {
             background-color: var(--primary-color);
             color: #fff;
         }
-        .side__menu-item-icon{
+
+        .side__menu-item-icon {
             margin-right: 10px;
         }
+    }
+
+    .router-link-exact-active {
+        background-color: var(--primary-color);
+        color: #fff;
     }
 
     .log__out-section {

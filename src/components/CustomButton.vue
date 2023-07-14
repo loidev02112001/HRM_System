@@ -5,9 +5,7 @@
         button__large: large,
         button__disabled: disable,
         button__rounded: rounded
-    }"
-    @click="$emit('handleClick')"
-    >
+    }" @click="$emit('handleClick')">
         <span>
             <slot name="left-icon"></slot>
         </span>

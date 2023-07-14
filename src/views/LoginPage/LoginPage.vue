@@ -18,19 +18,24 @@
     </div>
   </div>
 </template>
+
 <script setup>
+import { ref } from 'vue';
+
 import CustomInput from '@/components/CustomInput.vue';
 import CustomButton from '@/components/CustomButton.vue';
 import { useLoginMutation } from '@/api/auth/login';
-import { ref } from 'vue';
 
 const email = ref('')
 const password = ref('')
 const { mutate: login } = useLoginMutation()
+
 const handleLogin = () => {
   login({ email: email.value, password: password.value })
 }
+
 </script>
+
 <style scoped lang="scss">
 .login__container {
   display: flex;

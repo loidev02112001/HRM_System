@@ -102,6 +102,6 @@ export const checkIsEmpty = value => {
   return value?.toString().trim() === '';
 };
 
-export const locale = {
-  emptyText: <div>Không có dữ liệu</div>
-};
+// export const locale = {
+//   emptyText: <div>Không có dữ liệu</div>
+// };
