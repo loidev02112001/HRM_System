@@ -3,12 +3,11 @@
         <div class="overview__heading">Tổng quan nhân viên</div>
         <div class="overview__content">
             <div class="overview__content-avatar">
-                <input class="overview__inp-change-avatar" type="file" accept="image/*" @change="handlePreview($event)" />
+                <input class="overview__inp-change-avatar" type="file" accept="image/*" @change="event=>handlePreview(event.target.files)" />
                 <img :src="previewImages ? previewImages : fallbackToDefaultAvatar(images)" alt="User avatar"
                     class="avatar__img" />
                 <CameraOutlined class="avatar__camera" />
             </div>
-            {{ console.log(previewImages,images) }}
             <div class="overview__content-detail">
                 <div class="overview__content-detail-wrapper">
                     <div class="overview__content-detail-heading">
@@ -56,10 +55,12 @@ import { notification } from 'ant-design-vue';
 import { ref, reactive } from 'vue';
 import API from '@/services/request';
 import { removeTimeFromDate } from '@/utils';
+import { updateUserMutation } from '@/api/user/updateUser';
 
 const id = localStorage.getItem('id')
 const images = ref(null)
 const previewImages = ref(null)
+const {mutate:updateUser} = updateUserMutation()
 const userInfor = reactive({
     email: '',
     username: '',
@@ -82,8 +83,7 @@ const userDetail = async () => {
 }
 userDetail()
 
-const handlePreview = (e) => {
-    const img = e.target.files
+const handlePreview = img => {
     if (!img?.[0]?.type?.includes('image')) {
         notification.error({
             message: 'File không đúng định dạng'
@@ -97,6 +97,7 @@ const handlePreview = (e) => {
         });
         return;
     } else {
+        images.value = img[0]
         const url = URL.createObjectURL(img[0]);
         previewImages.value = url
     }
@@ -105,7 +106,10 @@ const handleCancel = () => {
     previewImages.value=null
  }
 const handleUpdateUser = ()=>{
-
+    const formData = new FormData()
+    formData.append('username',userInfor.username)
+    formData.append('user_avatar',images.value)
+    updateUser(formData)
 }
 </script>
 
