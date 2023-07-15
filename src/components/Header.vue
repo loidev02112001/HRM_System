@@ -13,7 +13,7 @@
                     {{ accountStatus === 'Active' ? 'Đang hoạt động' : 'Chưa hoạt động' }}
                 </span>
             </div>
-            <img :src="avatar" alt="account avatar" class="header__user-img" />
+            <img :src="fallbackToDefaultAvatar(accountAvatar)" alt="account avatar" class="header__user-img" />
             <a-dropdown overlayClassName="header__action-dropdown" placement="bottomLeft">
                 <a class="ant-dropdown-link" @click.prevent>
                     <EllipsisOutlined />
@@ -51,7 +51,7 @@ import HomeIcon from './HomeIcon.vue';
 import { convertRouteToVNS } from '@/utils/index.js';
 import { userInforStore } from '@/stores/userInfor';
 import CustomInput from '@/components/CustomInput.vue'
-import defaultAvatar from '@/assets/images/default_avatar.jpg'
+import { fallbackToDefaultAvatar } from '@/utils/index.js';
 import { useChangePassMutation } from '@/api/auth/changePassword'
 
 const { accountName, accountStatus, accountAvatar } = storeToRefs(userInforStore())
@@ -80,10 +80,6 @@ const handleOk = () => {
 const breadcum = computed(() => {
     const currentPath = router.currentRoute.value.path
     return currentPath === '/' ? ' >> Trang chủ' : convertRouteToVNS(currentPath).replace('/', ' >> ')
-})
-
-const avatar = computed(() => {
-    return accountAvatar ? accountAvatar : defaultAvatar
 })
 
 const validatePassword = (oldPassword, newPassword, confirmPassword) => {

@@ -15,12 +15,13 @@ export const useLoginMutation = () => {
       const {
         email: accountEmail,
         user_avatar: accountAvatar,
-        _id: accountId,
+        _id,
         username: accountName,
         role: accountRole,
         status: accountStatus
       } = data.data.data;
-      getUserInfor({ accountEmail, accountAvatar, accountId, accountName, accountRole, accountStatus });
+      getUserInfor({ accountEmail, accountAvatar, accountName, accountRole, accountStatus });
+      localStorage.setItem('id', _id);
       Cookies.set('accessToken', data.data.data.accessToken, { path: '/' }, { expires: 1 });
       router.push('/');
     },

@@ -2,12 +2,11 @@ import { useMutation } from 'vue-query';
 import { notification } from 'ant-design-vue';
 
 import API from '@/services/request';
-import { userInforStore } from '@/stores/userInfor';
 
 export const useChangePassMutation = () => {
-  const { accountId } = userInforStore();
+  const id = localStorage.getItem('id')
   return useMutation({
-    mutationFn: body => API.put(`/users/change-password/${accountId}`, body),
+    mutationFn: body => API.put(`/users/change-password/${id}`, body),
     onSuccess: () => {
       notification.success({
         message: 'Đổi mật khẩu thành công'

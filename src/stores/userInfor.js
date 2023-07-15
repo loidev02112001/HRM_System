@@ -5,7 +5,6 @@ export const userInforStore = defineStore('userInfor', {
     return {
       accountAvatar: '',
       accountEmail: '',
-      accountId: '',
       accountName: '',
       accountRole: [],
       accountStatus: ''
@@ -14,8 +13,7 @@ export const userInforStore = defineStore('userInfor', {
   actions: {
     getUserInfor(values) {
       this.accountAvatar = values.accountAvatar;
-      this.accountEmail = values.accountEmail;
-      this.accountId = values.accountId;
+      this.accountEmail = values.accountEmail;  
       this.accountName = values.accountName;
       this.accountRole = values.accountRole;
       this.accountStatus = values.accountStatus;
