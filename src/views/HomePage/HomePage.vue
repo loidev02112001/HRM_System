@@ -3,11 +3,12 @@
         <div class="overview__heading">Tổng quan nhân viên</div>
         <div class="overview__content">
             <div class="overview__content-avatar">
-                <input class="overview__inp-change-avatar" type="file" accept="image/*" @input="handlePreview($event)" />
-                <img :src="previewImg ? previewImg : fallbackToDefaultAvatar(userInfor.user_avatar)" alt="User avatar"
+                <input class="overview__inp-change-avatar" type="file" accept="image/*" @change="handlePreview($event)" />
+                <img :src="previewImages ? previewImages : fallbackToDefaultAvatar(images)" alt="User avatar"
                     class="avatar__img" />
                 <CameraOutlined class="avatar__camera" />
             </div>
+            {{ console.log(previewImages,images) }}
             <div class="overview__content-detail">
                 <div class="overview__content-detail-wrapper">
                     <div class="overview__content-detail-heading">
@@ -19,33 +20,29 @@
                     </div>
                     <div>
                         <div>Email</div>
-                        <input v-model="userInfor.email" disabled />
+                        <input :value="userInfor.email" disabled />
                     </div>
                     <div>
                         <div>Quyền hạn</div>
-                        <input v-model="userInfor.role" disabled />
+                        <input :value="userInfor.role" disabled />
                     </div>
                     <div>
                         <div>Tình trạng hoạt động</div>
-                        <input v-model="userInfor.status" disabled />
+                        <input :value="userInfor.status" disabled />
                     </div>
                     <div>
                         <div>Ngày vào làm</div>
-                        <input v-model="userInfor.createdAt" disabled />
+                        <input :value="removeTimeFromDate(userInfor.createdAt)" disabled />
                     </div>
 
-                    <!-- <div class="overview__edit">
-                        <Button class="overview__edit-cancel" onClick={()=> setImg(null)}>
+                    <div class="overview__edit">
+                        <button class="overview__edit-cancel" @click="handleCancel">
                             Huỷ
-                        </Button>
-                        <Button class="overview__edit-ok" onClick={()=> {
-                            handleUpdateUser(userInfor._id);
-                            }}
-                            disable={!userName && !img}
-                            >
+                        </button>
+                        <button class="overview__edit-ok" @click="handleUpdateUser">
                             Cập nhật
                         </Button>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,17 +55,17 @@ import { CameraOutlined } from '@ant-design/icons-vue'
 import { notification } from 'ant-design-vue';
 import { ref, reactive } from 'vue';
 import API from '@/services/request';
+import { removeTimeFromDate } from '@/utils';
 
 const id = localStorage.getItem('id')
-const images = ref()
-const previewImg = ref()
+const images = ref(null)
+const previewImages = ref(null)
 const userInfor = reactive({
     email: '',
     username: '',
     role: '',
     status: '',
     createdAt: '',
-    user_avatar: ''
 })
 const userDetail = async () => {
     try {
@@ -78,7 +75,7 @@ const userDetail = async () => {
         userInfor.role = response.data.data.role
         userInfor.status = response.data.data.status
         userInfor.createdAt = response.data.data.createdAt
-        userInfor.user_avatar = response.data.data.user_avatar
+      images.value = response.data.data.user_avatar
     } catch (error) {
         console.log(error)
     }
@@ -100,12 +97,16 @@ const handlePreview = (e) => {
         });
         return;
     } else {
-        images.value = img
         const url = URL.createObjectURL(img[0]);
-        previewImg.value = url
+        previewImages.value = url
     }
 }
+const handleCancel = () => {
+    previewImages.value=null
+ }
+const handleUpdateUser = ()=>{
 
+}
 </script>
 
 <style lang="scss" scoped>
