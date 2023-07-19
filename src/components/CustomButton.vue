@@ -7,11 +7,11 @@
         button__rounded: rounded
     }" @click="$emit('handleClick')">
         <span>
-            <slot name="left-icon"></slot>
+            <slot name="leftIcon"></slot>
         </span>
         <span>{{ text }}</span>
         <span>
-            <slot name="right-icon"></slot>
+            <slot name="rightIcon"></slot>
         </span>
     </button>
 </template>

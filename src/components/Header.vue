@@ -54,6 +54,7 @@ import CustomInput from '@/components/CustomInput.vue'
 import { fallbackToDefaultAvatar } from '@/utils/index.js';
 import { useChangePassMutation } from '@/api/auth/changePassword'
 
+
 const { accountName, accountStatus, accountAvatar } = storeToRefs(userInforStore())
 const oldPassword = ref('')
 const newPassword = ref('')

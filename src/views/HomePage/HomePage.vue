@@ -3,7 +3,8 @@
         <div class="overview__heading">Tổng quan nhân viên</div>
         <div class="overview__content">
             <div class="overview__content-avatar">
-                <input class="overview__inp-change-avatar" type="file" accept="image/*" @change="event=>handlePreview(event.target.files)" />
+                <input class="overview__inp-change-avatar" type="file" accept="image/*"
+                    @change="event => handlePreview(event.target.files)" />
                 <img :src="previewImages ? previewImages : fallbackToDefaultAvatar(images)" alt="User avatar"
                     class="avatar__img" />
                 <CameraOutlined class="avatar__camera" />
@@ -35,12 +36,11 @@
                     </div>
 
                     <div class="overview__edit">
-                        <button class="overview__edit-cancel" @click="handleCancel">
-                            Huỷ
-                        </button>
-                        <button class="overview__edit-ok" @click="handleUpdateUser">
+                        <CustomButton  text="Huỷ" @handle-click="handleCancel">
+                        </CustomButton>
+                        <CustomButton text="Cập nhật" @handle-click="handleUpdateUser">
                             Cập nhật
-                        </Button>
+                        </CustomButton>
                     </div>
                 </div>
             </div>
@@ -56,11 +56,13 @@ import { ref, reactive } from 'vue';
 import API from '@/services/request';
 import { removeTimeFromDate } from '@/utils';
 import { updateUserMutation } from '@/api/user/updateUser';
+import CustomButton from '@/components/CustomButton.vue';
 
 const id = localStorage.getItem('id')
+const originalImages = ref(null)
 const images = ref(null)
 const previewImages = ref(null)
-const {mutate:updateUser} = updateUserMutation()
+const { mutate: updateUser } = updateUserMutation()
 const userInfor = reactive({
     email: '',
     username: '',
@@ -76,7 +78,8 @@ const userDetail = async () => {
         userInfor.role = response.data.data.role
         userInfor.status = response.data.data.status
         userInfor.createdAt = response.data.data.createdAt
-      images.value = response.data.data.user_avatar
+        images.value = response.data.data.user_avatar
+        originalImages.value = response.data.data.user_avatar
     } catch (error) {
         console.log(error)
     }
@@ -103,12 +106,13 @@ const handlePreview = img => {
     }
 }
 const handleCancel = () => {
-    previewImages.value=null
- }
-const handleUpdateUser = ()=>{
+    previewImages.value = null
+    images.value = originalImages.value
+}
+const handleUpdateUser = () => {
     const formData = new FormData()
-    formData.append('username',userInfor.username)
-    formData.append('user_avatar',images.value)
+    formData.append('username', userInfor.username)
+    formData.append('user_avatar', images.value)
     updateUser(formData)
 }
 </script>
